@@ -1,0 +1,61 @@
+﻿# Name:  Ryan Hutton
+# Assignment: Final Project Script Three - ATM Script
+# Course:  IT 140 - Introduction to Scripting
+# Institution:  Southern New Hampshire University
+# Date:  9 February 2019
+
+# Prompt: Your task for this project is to create a simple ATM script.
+# The script emphasizes the importance of using functions in the creation
+# of more organized, reusable code.  Your script must include the following:
+
+    # 1) Collect Customer input
+    # 2) Calculate the ending balance
+    # 3) Display the results to the customer
+
+import sys
+
+account_balance = float(500.25)
+
+# The function printbalance() simply outputs the current balance to the 
+# customer.  This does not need to take in any parameters because it just 
+# prints the balance.
+def printbalance():
+  print("Your current balance:\n" , account_balance)
+
+# deposit() deposits additional funds into the user's account with the amount
+# specified by the user (request_amount). request_amount is converted to a
+# float to add it to the parameter current_balance. Lastly, the function prints the 
+# request_amount and the current account_balance. 
+def deposit(current_balance):
+  request_amount = float(input("How much would you like to deposit today?\n"))
+  current_balance += request_amount
+  print("Deposit was $%.2f" % request_amount, ", current balance is $%.2f" % current_balance) 
+
+# withdrawal() deducts a funds into the user's account with the amount
+# specified by the user (withdrawal_amount). withdrawal_amount is converted to a
+# float to subtract it from the current_balance parameter. An if statement is used
+# to ensure the withdrawal_amount does not exceed the accunt_balance; if it does, 
+# the function outputs to the screen, otherwise, it withdrawals the amount. Lastly, 
+# the function prints the request_amount and the current account_balance. 
+def withdrawal(current_balance):
+  withdrawal_amount = float(input("How much would you like to withdraw today?\n"))
+  if (withdrawal_amount > account_balance):
+    print("$%.2f" % withdrawal_amount, "is greater than your account balance of $%.2f" % account_balance)
+  else:
+    current_balance -= withdrawal_amount
+    print("Withdrawal amount was $%.2f" % withdrawal_amount, ", current balance is $%.2f" % current_balance)
+  
+userchoice = input ("What would you like to do?\n")
+
+# The conditionals below outline the main portion of the script excecution.  The functions
+# described above are called here depending on the user input.  The global variable account_balance
+# is passed to the deposit() and withdrawal() functions as parameters.  If the user selects 'Q'
+# or any letter other than 'D', 'B', or 'W', the program quits.
+if(userchoice == 'D'):
+  deposit(account_balance)
+elif(userchoice == 'W'):
+  withdrawal(account_balance)
+elif(userchoice == 'B'):
+  printbalance()
+else:
+  print("Thank you for banking with us.")
